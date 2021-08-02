@@ -5,7 +5,6 @@ import by.leverx.babashev.dto.person.PersonFullDto;
 import by.leverx.babashev.dto.person.PersonPreviewDto;
 import by.leverx.babashev.model.Person;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(uses = AnimalMapper.class/*, componentModel = "spring"*/)
