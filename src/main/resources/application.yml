@@ -24,5 +24,14 @@ spring:
     hibernate:
       ddl-auto: none
 
+
 jwt:
   secret: ${JWT_SECRET:secret-key}
+
+
+honeycomb:
+  beeline:
+    enabled: true
+    service-name: Spring-JWT-Demo
+    dataset: application
+    write-key: 0103c8e625a662cfb693a8cf2b4bc084

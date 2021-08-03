@@ -5,6 +5,8 @@ import by.leverx.babashev.dto.person.PersonFullDto;
 import by.leverx.babashev.dto.person.PersonPreviewDto;
 import by.leverx.babashev.dto.person.PersonUpdateDto;
 import by.leverx.babashev.service.PersonService;
+import io.honeycomb.beeline.spring.beans.aspects.ChildSpan;
+import io.honeycomb.beeline.tracing.Beeline;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,15 +25,20 @@ import java.util.List;
 public class PersonController {
 
     private final PersonService personService;
+    private final Beeline beeline;
 
     @GetMapping("/{id}")
     public PersonFullDto findById(@PathVariable Long id) {
         return personService.findById(id);
     }
 
+    @ChildSpan("find all persons")
     @GetMapping
     public List<PersonPreviewDto> findAll() {
-        return  personService.findAll();
+        List<PersonPreviewDto> persons = personService.findAll();
+        beeline.getActiveSpan().addTraceField("findPersons", persons);
+
+        return persons;
     }
 
     @PostMapping

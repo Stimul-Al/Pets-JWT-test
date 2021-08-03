@@ -11,6 +11,7 @@
   * Liquibase 
   * Mapstruct
   * Spring-Scheduling
+  * Honeycomb
 * A person can have several animals
 * Animal can have several owners
 * Animals are dogs or cats
